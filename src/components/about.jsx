@@ -1,38 +1,57 @@
 export const About = (props) => {
+  let list1 = [
+    "наличие опытных и квалифицированных специалистов",
+    "использование современного оборудования",
+    "уникальные предложения по ремонту автомобилей",
+  ];
+  let list2 = [
+    "комплексный подход к своей работе",
+    "низкие цены при высоком качестве услуг и товаров",
+    "наличие гарантии на выполняемые работы, продукцию",
+  ];
   return (
     <div id="about">
       <div className="container">
         <div className="row">
           <div className="col-xs-12 col-md-6">
-            {" "}
-            <img src="img/about.jpg" className="img-responsive" alt="" />{" "}
-          </div>
-          <div className="col-xs-12 col-md-6">
+            <h2>О нас</h2>
             <div className="about-text">
-              <h2>About Us</h2>
-              <p>{props.data ? props.data.paragraph : "loading..."}</p>
-              <h3>Why Choose Us?</h3>
+              <p>
+                Компания «Дизель Драйв» вот уже более 19 лет оказывает услуги по
+                диагностике и ремонту дизельных автомобилей, легковых и грузовых
+                моделей. Также у нас имеются разнообразные запчасти для
+                транспортных средств. Продукция предназначена для
+                автовладельцев, грузоперевозчиков и станций технического
+                обслуживания. Предоставляем свои услуги в границах Республики
+                Беларусь и Российской Федерации.
+              </p>
+              <h3>Почему нас выбирают?</h3>
               <div className="list-style">
                 <div className="col-lg-6 col-sm-6 col-xs-12">
                   <ul>
-                    {props.data
-                      ? props.data.Why.map((d, i) => (
-                          <li key={`${d}-${i}`}>{d}</li>
-                        ))
-                      : "loading"}
+                    {list1.map((d, i) => (
+                      <li key={`${d}-${i}`}>{d}</li>
+                    ))}
                   </ul>
                 </div>
                 <div className="col-lg-6 col-sm-6 col-xs-12">
                   <ul>
-                    {props.data
-                      ? props.data.Why2.map((d, i) => (
-                          <li key={`${d}-${i}`}> {d}</li>
-                        ))
-                      : "loading"}
+                    {list2.map((d, i) => (
+                      <li key={`${d}-${i}`}>{d}</li>
+                    ))}
                   </ul>
                 </div>
               </div>
             </div>
+          </div>
+          <div className="col-xs-12 col-md-6">
+            {" "}
+            <img
+              src="img/about.jpg"
+              className="img-responsive"
+              alt=""
+              style={{ marginTop: 55 }}
+            />{" "}
           </div>
         </div>
       </div>

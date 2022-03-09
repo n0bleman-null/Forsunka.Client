@@ -1,29 +1,59 @@
 export const Services = (props) => {
+  let services = [
+    {
+      icon: "fa fa-wordpress",
+      name: "Высверливание заломанных свечей накала",
+      text: "Любой двигатель, любая степень залома. высверлим любую свечу накала, восстановим резьбу. ",
+    },
+    {
+      icon: "fa fa-cart-arrow-down",
+      name: "Диагностика, проверка свечей накала",
+      text: "Демонтаж форсунки, удаление старой шайбы, восстановление геометрии, чистка колодца и посадочного места. ",
+    },
+    {
+      icon: "fa fa-cloud-download",
+      name: "Высверливание выкручивание обломанных болтов и шпилек",
+      text: "Удаление заломанного болта любой степени сложности. Восстановление, а также усиление резьбы. ",
+    },
+    {
+      icon: "fa fa-language",
+      name: "Снятие дизельных насос-форсунок",
+      text: "Демонтаж с применением уникального немецкого оборудования. Восстановление геометрии и чистка колодца. ",
+    },
+    {
+      icon: "fa fa-plane",
+      name: "Замена медных шайб под форсункой",
+      text: "Демонтаж форсунки, удаление старой шайбы, восстановление геометрии, чистка колодца и посадочного места. ",
+    },
+    {
+      icon: "fa fa-pie-chart",
+      name: "Восстановление поврежденной резьбы",
+      text: "Уборка залов, кухни и варочных поверхностей. Возможность уборки в ночное время суток. ",
+    },
+  ];
   return (
-    <div id='services' className='text-center'>
-      <div className='container'>
-        <div className='section-title'>
-          <h2>Our Services</h2>
+    <div id="services" className="text-center">
+      <div className="container">
+        <div className="section-title">
+          <h2>Наши услуги</h2>
           <p>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit duis sed
-            dapibus leonec.
+            Гарантия на все работы. Работы выполняются на высокотехнологичном и
+            точном немецком оборудовании
           </p>
         </div>
-        <div className='row'>
-          {props.data
-            ? props.data.map((d, i) => (
-                <div key={`${d.name}-${i}`} className='col-md-4'>
-                  {' '}
-                  <i className={d.icon}></i>
-                  <div className='service-desc'>
-                    <h3>{d.name}</h3>
-                    <p>{d.text}</p>
-                  </div>
-                </div>
-              ))
-            : 'loading'}
+        <div className="row">
+          {services.map((d, i) => (
+            <div key={`${d.name}-${i}`} className="col-md-4">
+              {" "}
+              <i className={d.icon}></i>
+              <div className="service-desc">
+                <h3>{d.name}</h3>
+                <p>{d.text}</p>
+              </div>
+            </div>
+          ))}
         </div>
       </div>
     </div>
-  )
-}
+  );
+};
