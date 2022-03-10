@@ -13,6 +13,9 @@ import "./App.css";
 export const scroll = new SmoothScroll('a[href*="#"]', {
   speed: 1000,
   speedAsDuration: true,
+  offset: function (anchor, toggle) {
+    return 80;
+  },
 });
 
 const App = () => {
