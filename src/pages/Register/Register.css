@@ -1,0 +1,45 @@
+#register {
+  padding: 100px 0 60px;
+  background: white;
+  color: rgba(255, 255, 255, 0.75);
+  width: 100%;
+  height: 100%;
+}
+#register form {
+  padding-top: 20px;
+}
+#register .btn-custom {
+  background: transparent;
+  border: 2px solid #608dfd;
+  color: #608dfd;
+  position: relative;
+  left: 50%;
+  transform: translate(-50%, 0);
+}
+#register .btn-custom:hover {
+  color: #1f386e;
+  background: #fff;
+}
+#register .form-control {
+  display: block;
+  width: 100%;
+  padding: 6px 12px;
+  font-size: 16px;
+  line-height: 1.42857143;
+  color: #444;
+  background-color: #fff;
+  background-image: none;
+  border: 1px solid #ddd;
+  border-radius: 0;
+  -webkit-box-shadow: none;
+  box-shadow: none;
+  -webkit-transition: none;
+  -o-transition: none;
+  transition: none;
+}
+#register .form-control:focus {
+  border-color: #999;
+  outline: 0;
+  -webkit-box-shadow: transparent;
+  box-shadow: transparent;
+}
