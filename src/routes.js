@@ -9,3 +9,8 @@ export const AccountRegister = host + "Account/Register";
 export const AccountRefreshToken = host + "Account/RefreshToken";
 export const AccountLogout = host + "Account/Logout";
 export const AccountCurrentUser = host + "Account/CurrentUser";
+
+export const OrderGetOrders = host + "Order/GetOrders";
+export const OrderConfirmOrder = host + "Order/Confirm";
+
+export const ConversationSendConversation = host + "Conversation/Send";

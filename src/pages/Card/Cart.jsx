@@ -2,7 +2,10 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 import { CatalogNavigation } from "./../../components/navigationCatalog";
 import "./Cart.css";
-import { AccountCurrentUser, CatalogGetProducts } from "../../routes";
+import {
+  CatalogGetProducts,
+  OrderConfirmOrder,
+} from "../../routes";
 import { CartProduct } from "../../components/Catalog/CartProduct";
 
 const Cart = () => {
@@ -11,6 +14,8 @@ const Cart = () => {
   const [cart, setCart] = useState([]);
   const [storage, setStorage] = useState([]);
   const [sum, setSum] = useState(0);
+  const [token, _] = useState(store.get("tokens").accessToken);
+  const [comment, setComment] = useState("");
 
   useEffect(() => {
     var localstorage = store.get("cart");
@@ -42,7 +47,53 @@ const Cart = () => {
             />
           ))}
         <div className="container">
-          <h1>Сумма: {cart != null && cart.length > 0 ? sum : 0}</h1>
+          <div className="row">
+            <h1 className="col-xs-3">
+              Сумма: {cart != null && cart.length > 0 ? sum : 0}
+            </h1>
+            {!(store.get("tokens") === undefined) && (
+              <button
+                className="btn btn-custom"
+                style={{ marginTop: 20 }}
+                onClick={() => {
+                  axios
+                    .post(
+                      OrderConfirmOrder,
+                      {
+                        productList: storage,
+                        comment: comment,
+                      },
+                      { headers: { Authorization: `Bearer ${token}` } }
+                    )
+                    .then((resp) => {
+                      console.log(resp);
+                    });
+                  setTimeout(() => {
+                    store.set("cart", []);
+                    window.location.assign("/catalog");
+                  }, 2000);
+                }}
+              >
+                Оформить заказ
+              </button>
+            )}
+            {!(store.get("tokens") === undefined) && (
+              <div className="form-group">
+                <h5>Комментарий</h5>
+                <input
+                  type="text"
+                  id="comment"
+                  name="comment"
+                  className="form-control"
+                  placeholder="Коментарий"
+                  value={comment}
+                  onChange={(e) => {
+                    setComment(e.target.value);
+                  }}
+                />
+              </div>
+            )}
+          </div>
         </div>
       </div>
     </>

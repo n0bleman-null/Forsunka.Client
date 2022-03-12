@@ -1,5 +1,4 @@
 import { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
 import { CatalogNavigation } from "./../../components/navigationCatalog";
 import {
   CatalogGetCategories,
@@ -70,6 +69,20 @@ const Catalog = () => {
                     <option value={c.id}>{c.name}</option>
                   ))}
                 </select>
+              </div>
+              <div className="form-group">
+                <h5>Поиск</h5>
+                <input
+                  type="text"
+                  id="search"
+                  name="search"
+                  className="form-control"
+                  placeholder="Поиск"
+                  value={filter.search}
+                  onChange={(e) => {
+                    setFilter({ ...filter, search: e.target.value });
+                  }}
+                />
               </div>
               <div className="form-group">
                 <h5>Цена (от)</h5>

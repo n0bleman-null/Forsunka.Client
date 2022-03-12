@@ -1,5 +1,7 @@
 import { useState } from "react";
 import emailjs from "emailjs-com";
+import axios from "axios";
+import { ConversationSendConversation } from "../routes";
 
 const initialState = {
   name: "",
@@ -15,29 +17,13 @@ export const Contact = (props) => {
     twitter: "https://twitter.com",
     youtube: "https://youtube.com",
   };
-  const [{ name, email, message }, setState] = useState(initialState);
 
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setState((prevState) => ({ ...prevState, [name]: value }));
-  };
-  const clearState = () => setState({ ...initialState });
+  const [data, setData] = useState({
+    name: "",
+    email: "",
+    message: "",
+  });
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    console.log(name, email, message);
-    emailjs
-      .sendForm("YOUR_SERVICE_ID", "YOUR_TEMPLATE_ID", e.target, "YOUR_USER_ID")
-      .then(
-        (result) => {
-          console.log(result.text);
-          clearState();
-        },
-        (error) => {
-          console.log(error.text);
-        }
-      );
-  };
   return (
     <div>
       <div id="contact">
@@ -48,7 +34,7 @@ export const Contact = (props) => {
                 <h2>Остались вопросы?</h2>
                 <p>Заполните поля ниже и мы оперативно на них ответим.</p>
               </div>
-              <form name="sentMessage" validate onSubmit={handleSubmit}>
+              <form name="sentMessage" validate>
                 <div className="row">
                   <div className="col-md-6">
                     <div className="form-group">
@@ -59,7 +45,10 @@ export const Contact = (props) => {
                         className="form-control"
                         placeholder="Имя"
                         required
-                        onChange={handleChange}
+                        value={data.name}
+                        onChange={(e) => {
+                          setData({ ...data, name: e.target.value });
+                        }}
                       />
                       <p className="help-block text-danger"></p>
                     </div>
@@ -73,7 +62,10 @@ export const Contact = (props) => {
                         className="form-control"
                         placeholder="Электронная почта"
                         required
-                        onChange={handleChange}
+                        value={data.email}
+                        onChange={(e) => {
+                          setData({ ...data, email: e.target.value });
+                        }}
                       />
                       <p className="help-block text-danger"></p>
                     </div>
@@ -87,12 +79,27 @@ export const Contact = (props) => {
                     rows="4"
                     placeholder="Сообщение"
                     required
-                    onChange={handleChange}
+                    value={data.message}
+                    onChange={(e) => {
+                      setData({ ...data, message: e.target.value });
+                    }}
                   ></textarea>
                   <p className="help-block text-danger"></p>
                 </div>
                 <div id="success"></div>
-                <button type="submit" className="btn btn-custom btn-lg">
+                <button
+                  className="btn btn-custom btn-lg"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    axios
+                      .post(ConversationSendConversation, data)
+                      .then((resp) => {
+                        setTimeout(() => {
+                          window.location.reload();
+                        }, 2000);
+                      });
+                  }}
+                >
                   Отправить сообщение
                 </button>
               </form>

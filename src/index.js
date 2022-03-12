@@ -9,6 +9,7 @@ import Catalog from "./pages/Catalog/Catalog";
 import Login from "./pages/Login/Login";
 import Register from "./pages/Register/Register";
 import Cart from "./pages/Card/Cart";
+import OrderPage from "./pages/OrderPage/OrderPage";
 
 ReactDOM.render(
   <React.StrictMode>

@@ -48,9 +48,6 @@ const Login = () => {
                     e.preventDefault();
                     axios.post(AccountLogin, auth).then((resp) => {
                       store.set("tokens", resp.data);
-                      axios.defaults.headers.common[
-                        "Authorization"
-                      ] = `Bearer ${resp.data.accessToken}`;
                     });
                     setTimeout(() => {
                       window.location.assign("/catalog");
