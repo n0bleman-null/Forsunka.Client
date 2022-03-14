@@ -3,6 +3,7 @@ export const CatalogGetCategories = host + "Catalog/GetCategories";
 export const CatalogGetWithFilter = host + "Catalog/GetWithFilter";
 export const CatalogGetCategoryTags = host + "Catalog/GetCategoryTags";
 export const CatalogGetProducts = host + "Catalog/GetProducts";
+export const CatalogGetProduct = host + "Catalog/GetProduct";
 
 export const AccountLogin = host + "Account/Login";
 export const AccountRegister = host + "Account/Register";

@@ -20,6 +20,7 @@ export const Order = ({ id, orderLines, comment, date }) => {
               <OrderProduct
                 name={orderLine.product.name}
                 amount={orderLine.amount}
+                id={orderLine.product.id}
               />
             ))
           ) : (

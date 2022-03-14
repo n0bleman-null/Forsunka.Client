@@ -10,6 +10,7 @@ import Login from "./pages/Login/Login";
 import Register from "./pages/Register/Register";
 import Cart from "./pages/Card/Cart";
 import OrderPage from "./pages/OrderPage/OrderPage";
+import ProductPage from "./pages/ProductPage/ProductPage";
 
 ReactDOM.render(
   <React.StrictMode>
@@ -17,6 +18,7 @@ ReactDOM.render(
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/catalog" element={<Catalog />} />
+        <Route path="/products/:id" element={<ProductPage />} />
         <Route path="/cart" element={<Cart />} />
         <Route path="/orders" element={<OrderPage />} />
         <Route path="/login" element={<Login />} />

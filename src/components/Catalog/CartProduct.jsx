@@ -1,10 +1,14 @@
+import { Link } from "react-router-dom";
+
 export const CartProduct = ({ id, name, price, count }) => {
   var store = require("store");
   return (
     <div className="container">
       <div className="row">
         <div className="col-xs-6">
-          <h1>{name}</h1>
+          <Link to={`/products/${id}`}>
+            <h1>{name}</h1>
+          </Link>
           <p>Стоимость {price}</p>
         </div>
         <div className="col-xs-2">

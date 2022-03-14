@@ -1,10 +1,14 @@
+import { Link } from "react-router-dom";
+
 export const Product = ({ id, name, price }) => {
   var store = require("store");
   return (
     <div className="container">
       <div className="row">
         <div className="col-xs-7">
-          <h1>{name}</h1>
+          <Link to={`/products/${id}`}>
+            <h1>{name}</h1>
+          </Link>
           <p>Стоимость {price}</p>
         </div>
         <button
