@@ -984,15 +984,135 @@ const EditableRefreshTokenTable = () => {
   });
   return (
     <Form form={form} component={false}>
-      <Button
-        type="primary"
-        style={{
-          marginBottom: 16,
+      <Table
+        components={{
+          body: {
+            cell: EditableCell,
+          },
         }}
-        onClick={handleAdd}
-      >
-        Добавить
-      </Button>
+        bordered
+        dataSource={data}
+        columns={mergedColumns}
+        rowClassName="editable-row"
+        pagination={{
+          onChange: cancel,
+        }}
+      />
+    </Form>
+  );
+};
+const EditableConversationTable = () => {
+  const [form] = Form.useForm();
+  const [data, setData] = useState([]);
+  const [editingKey, setEditingKey] = useState("");
+  useEffect(() => {
+    axios.get(host + "api/Conversation/GetAll").then((resp) => {
+      setData(resp.data);
+    });
+  }, [setData]);
+  const isEditing = (record) => record.id === editingKey;
+
+  const edit = (record) => {
+    form.setFieldsValue({
+      name: "",
+      age: "",
+      address: "",
+      ...record,
+    });
+    setEditingKey(record.id);
+  };
+
+  const edit_id = (id) => {
+    setEditingKey(id);
+  };
+
+  const cancel = () => {
+    setEditingKey("");
+  };
+
+  const save = async (id) => {
+    try {
+      const row = await form.validateFields();
+      const newData = [...data];
+      const index = newData.findIndex((item) => id === item.id);
+
+      if (id !== 0) axios.put(host + `api/Conversation/Put`, { id, ...row });
+      else axios.post(host + `api/Conversation/Post`, row);
+
+      if (index > -1) {
+        const item = newData[index];
+        newData.splice(index, 1, { ...item, ...row });
+        setData(newData);
+        setEditingKey("");
+      } else {
+        newData.push(row);
+        setData(newData);
+        setEditingKey("");
+      }
+    } catch (errInfo) {
+      console.log("Validate Failed:", errInfo);
+    }
+  };
+  const handleDeleteCategory = (id) => {
+    axios.delete(host + `api/Conversation/Delete?entity=${id}`);
+    setData(data.filter((item) => item.id !== id));
+  };
+  const columns = [
+    {
+      title: "Идентефикатор",
+      dataIndex: "id",
+      editable: false,
+    },
+    {
+      title: "Пользователь",
+      dataIndex: "name",
+      editable: false,
+    },
+    {
+      title: "Электронная почта",
+      dataIndex: "email",
+      editable: false,
+    },
+    {
+      title: "Сообщение",
+      dataIndex: "message",
+      editable: false,
+    },
+    {
+      title: "Удалить",
+      dataIndex: "operation",
+      render: (_, record) => (
+        <Popconfirm
+          title="Точно удалить?"
+          onConfirm={() => handleDeleteCategory(record.id)}
+        >
+          <a>Удалить</a>
+        </Popconfirm>
+      ),
+    },
+  ];
+  const handleAdd = () => {
+    setData([...data, { id: 0, name: "default" }]);
+  };
+
+  const mergedColumns = columns.map((col) => {
+    if (!col.editable) {
+      return col;
+    }
+
+    return {
+      ...col,
+      onCell: (record) => ({
+        record,
+        inputType: "text",
+        dataIndex: col.dataIndex,
+        title: col.title,
+        editing: isEditing(record),
+      }),
+    };
+  });
+  return (
+    <Form form={form} component={false}>
       <Table
         components={{
           body: {
@@ -1128,6 +1248,9 @@ const AdminPage = () => {
           </Tabs.TabPane>
           <Tabs.TabPane tab="Токены" key="7">
             <EditableRefreshTokenTable />
+          </Tabs.TabPane>
+          <Tabs.TabPane tab="Обращения" key="8">
+            <EditableConversationTable />
           </Tabs.TabPane>
         </Tabs>
       </div>
