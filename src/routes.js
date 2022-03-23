@@ -1,4 +1,4 @@
-const host = "https://localhost:7158/";
+export const host = "https://localhost:7158/";
 export const CatalogGetCategories = host + "Catalog/GetCategories";
 export const CatalogGetWithFilter = host + "Catalog/GetWithFilter";
 export const CatalogGetCategoryTags = host + "Catalog/GetCategoryTags";

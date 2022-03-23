@@ -2,10 +2,7 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 import { CatalogNavigation } from "./../../components/navigationCatalog";
 import "./Cart.css";
-import {
-  CatalogGetProducts,
-  OrderConfirmOrder,
-} from "../../routes";
+import { CatalogGetProducts, OrderConfirmOrder } from "../../routes";
 import { CartProduct } from "../../components/Catalog/CartProduct";
 
 const Cart = () => {
@@ -14,7 +11,6 @@ const Cart = () => {
   const [cart, setCart] = useState([]);
   const [storage, setStorage] = useState([]);
   const [sum, setSum] = useState(0);
-  const [token, _] = useState(store.get("tokens").accessToken);
   const [comment, setComment] = useState("");
 
   useEffect(() => {
@@ -63,7 +59,13 @@ const Cart = () => {
                         productList: storage,
                         comment: comment,
                       },
-                      { headers: { Authorization: `Bearer ${token}` } }
+                      {
+                        headers: {
+                          Authorization: `Bearer ${
+                            store.get("tokens").accessToken
+                          }`,
+                        },
+                      }
                     )
                     .then((resp) => {
                       console.log(resp);

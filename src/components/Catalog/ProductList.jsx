@@ -6,7 +6,12 @@ const ProductList = ({ products }) => {
     <>
       {products !== null ? (
         products.map((prod) => (
-          <Product name={prod.name} price={prod.price} id={prod.id} />
+          <Product
+            name={prod.name}
+            price={prod.price}
+            id={prod.id}
+            description={prod.description}
+          />
         ))
       ) : (
         <p>Нет товаров</p>

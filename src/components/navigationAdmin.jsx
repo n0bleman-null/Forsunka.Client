@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 
-export const CatalogNavigation = (props) => {
+export const AdminNavigation = (props) => {
   var store = require("store");
   return (
     <nav id="menu" className="navbar navbar-default navbar-fixed-top">
@@ -28,34 +28,8 @@ export const CatalogNavigation = (props) => {
           id="bs-example-navbar-collapse-1"
         >
           <ul className="nav navbar-nav navbar-right">
-            {!(store.get("tokens") === undefined) &&
-              store.get("tokens").role === "Admin" && (
-                <li>
-                  <Link to="/admin">Админ-панель</Link>
-                </li>
-              )}
-            <li>
-              <Link to="/catalog">Каталог</Link>
-            </li>
-            <li>
-              <Link to="/cart">Корзина</Link>
-            </li>
-            {store.get("tokens") === undefined && (
-              <>
-                {" "}
-                <li>
-                  <Link to="/register">Регистрация</Link>
-                </li>
-                <li>
-                  <Link to="/login">Войти</Link>
-                </li>
-              </>
-            )}
             {!(store.get("tokens") === undefined) && (
               <>
-                <li>
-                  <Link to="/orders">Мои заказы</Link>
-                </li>
                 <li>
                   <a
                     href="/"

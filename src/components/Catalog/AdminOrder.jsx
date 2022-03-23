@@ -1,12 +1,29 @@
+import axios from "axios";
+import { host } from "../../routes";
 import { OrderProduct } from "./OrderProduct";
 
-export const Order = ({ id, orderLines, comment, date, state }) => {
+export const AdminOrder = ({ id, orderLines, comment, date, state, user }) => {
+  const states = ["Заказ в обработке", "Заказ готов к выдаче", "Заказ забран"];
   return (
     <div className="container">
       <div className="row">
         <div className="col-xs-7">
           <h1>Заказ №{id}</h1>
-          Статус заказа: {state}
+          <p>Пользователь: {user}</p>
+          Статус заказа:{" "}
+          <select
+            onChange={(event) => {
+              console.log(event.target.value);
+              axios.get(host + "Admin/ChangeState", {
+                params: { order: id, state: event.target.value },
+              });
+            }}
+          >
+            <option>{state}</option>
+            {states.map((state) => (
+              <option key={state}>{state}</option>
+            ))}
+          </select>
           <p>
             Дата заказа:{" "}
             {date.toLocaleString([], {

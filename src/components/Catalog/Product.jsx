@@ -1,6 +1,7 @@
+import { Descriptions } from "antd";
 import { Link } from "react-router-dom";
 
-export const Product = ({ id, name, price }) => {
+export const Product = ({ id, name, price, description }) => {
   var store = require("store");
   return (
     <div className="container">
@@ -9,7 +10,12 @@ export const Product = ({ id, name, price }) => {
           <Link to={`/products/${id}`}>
             <h1>{name}</h1>
           </Link>
-          <p>Стоимость {price}</p>
+          <p>
+            <b>Описание:</b> {description}
+          </p>
+          <p>
+            <b>Стоимость:</b> {price}
+          </p>
         </div>
         <button
           className="btn btn-custom"

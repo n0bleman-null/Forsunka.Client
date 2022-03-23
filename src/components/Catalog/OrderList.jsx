@@ -10,6 +10,7 @@ export const OrderList = ({ orders }) => {
             orderLines={order.orderLines}
             comment={order.comment}
             date={order.date}
+            state={order.state}
           />
         ))
       ) : (

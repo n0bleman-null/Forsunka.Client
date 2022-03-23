@@ -11,6 +11,8 @@ import Register from "./pages/Register/Register";
 import Cart from "./pages/Card/Cart";
 import OrderPage from "./pages/OrderPage/OrderPage";
 import ProductPage from "./pages/ProductPage/ProductPage";
+import "antd/dist/antd.css";
+import AdminPage from "./pages/Admin/AdminPage";
 
 ReactDOM.render(
   <React.StrictMode>
@@ -23,6 +25,7 @@ ReactDOM.render(
         <Route path="/orders" element={<OrderPage />} />
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
+        <Route path="/admin" element={<AdminPage />} />
       </Routes>
     </BrowserRouter>
     <Contact />
