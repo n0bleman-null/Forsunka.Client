@@ -117,18 +117,6 @@ const EditableCategoryTable = () => {
       editable: true,
     },
     {
-      title: "Удалить",
-      dataIndex: "operation",
-      render: (_, record) => (
-        <Popconfirm
-          title="Точно удалить?"
-          onConfirm={() => handleDeleteCategory(record.id)}
-        >
-          <a>Удалить</a>
-        </Popconfirm>
-      ),
-    },
-    {
       title: "Редактировать",
       dataIndex: "Редактировать",
       render: (_, record) => {
@@ -292,18 +280,6 @@ const EditableProductTable = () => {
       editable: true,
     },
     {
-      title: "Удалить",
-      dataIndex: "operation",
-      render: (_, record) => (
-        <Popconfirm
-          title="Точно удалить?"
-          onConfirm={() => handleDeleteCategory(record.id)}
-        >
-          <a>Удалить</a>
-        </Popconfirm>
-      ),
-    },
-    {
       title: "Редактировать",
       dataIndex: "Редактировать",
       render: (_, record) => {
@@ -455,18 +431,6 @@ const EditableTagTable = () => {
       sorter: (a, b) => a.categoryId - b.categoryId,
     },
     {
-      title: "Удалить",
-      dataIndex: "operation",
-      render: (_, record) => (
-        <Popconfirm
-          title="Точно удалить?"
-          onConfirm={() => handleDeleteCategory(record.id)}
-        >
-          <a>Удалить</a>
-        </Popconfirm>
-      ),
-    },
-    {
       title: "Редактировать",
       dataIndex: "Редактировать",
       render: (_, record) => {
@@ -611,18 +575,6 @@ const EditableEntityAttributeTable = () => {
       title: "Название",
       dataIndex: "name",
       editable: true,
-    },
-    {
-      title: "Удалить",
-      dataIndex: "operation",
-      render: (_, record) => (
-        <Popconfirm
-          title="Точно удалить?"
-          onConfirm={() => handleDeleteCategory(record.id)}
-        >
-          <a>Удалить</a>
-        </Popconfirm>
-      ),
     },
     {
       title: "Редактировать",
@@ -781,18 +733,6 @@ const EditableValueAttributeTable = () => {
       title: "Значение",
       dataIndex: "value",
       editable: true,
-    },
-    {
-      title: "Удалить",
-      dataIndex: "operation",
-      render: (_, record) => (
-        <Popconfirm
-          title="Точно удалить?"
-          onConfirm={() => handleDeleteCategory(record.id)}
-        >
-          <a>Удалить</a>
-        </Popconfirm>
-      ),
     },
     {
       title: "Редактировать",
